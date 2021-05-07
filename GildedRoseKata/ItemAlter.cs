@@ -6,6 +6,8 @@ namespace GildedRoseKata
     {
         public virtual void UpdateItemQuality(Item item)
         {
+            Console.WriteLine("-------- day " + item + " --------");
+            Console.WriteLine("name, sellIn, quality");
             throw new Exception("Unknown Item Type");
         }
 

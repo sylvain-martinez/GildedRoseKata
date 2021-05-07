@@ -13,84 +13,18 @@ namespace GildedRoseKata
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (Item item in Items)
             {
-                UpdateItemQuality(Items[i]);
+                UpdateItemQuality(item);
             }
         }
            
         private static void UpdateItemQuality(Item item)
         {
-            if (item.Name != "Aged Brie" && item.Name != "Backstage passes")
-            {
-                if (item.Quality > 0)
-                {
-                    if (item.Name != "Sulfuras")
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-                }
-            }
-            else
-            {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-
-                    if (item.Name == "Backstage passes")
-                    {
-                        if (item.SellIn < 11)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (item.Name != "Sulfuras")
-            {
-                item.SellIn = item.SellIn - 1;
-            }
-
-            if (item.SellIn < 0)
-            {
-                if (item.Name != "Aged Brie")
-                {
-                    if (item.Name != "Backstage passes")
-                    {
-                        if (item.Quality > 0)
-                        {
-                            if (item.Name != "Sulfuras")
-                            {
-                                item.Quality = item.Quality - 1;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        item.Quality = item.Quality - item.Quality;
-                    }
-                }
-                else
-                {
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
-                }
-            }
+            var alter = ItemAlter.GetInstanceFor(item);
+            alter.UpdateItemQuality(item);
         }
+
         public IList<Item> GetItems()
         {
             return this.Items;
