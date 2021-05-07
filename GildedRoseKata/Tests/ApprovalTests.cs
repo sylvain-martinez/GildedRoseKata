@@ -12,7 +12,7 @@ namespace GildedRoseKata
 
 
     [UseReporter(typeof(DiffReporter))]
-    public class ApprovalTest
+    public class ApprovalTests
     {
         [Fact]
         public void ThirtyDays()

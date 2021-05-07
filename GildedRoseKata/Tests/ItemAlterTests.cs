@@ -34,7 +34,6 @@ namespace GildedRoseKata
             item.SellIn.Should().Be(newsellin);
         }
 
-
         [Theory]
         [InlineData("Aged Brie", Category.AgedBrie)]
         [InlineData("Backstage passes", Category.BackstagePasses)]
@@ -48,5 +47,52 @@ namespace GildedRoseKata
             var category = ItemAlter.GetCategory(item);
             category.Should().Be(expectedcategory);
         }
+
+        [Fact]
+        public void CreatesAgedBrieProcessorForAgedBrie()
+        {
+            var item = new Item { Name = "Aged Brie" };
+            var alter = ItemAlter.GetInstanceFor(item);
+            alter.Should().NotBeNull();
+            alter.Should().BeOfType<AgedBrieAlter>();
+        }
+
+        [Fact]
+        public void LegendaryItemAlterForLegendaryItems()
+        {
+            var item = new Item { Name = "Sulfuras" };
+            var alter = ItemAlter.GetInstanceFor(item);
+            alter.Should().NotBeNull();
+            alter.Should().BeOfType<LegendaryItemAlter>();
+        }
+
+        [Fact]
+        public void CreatesBackstagePassAlterForBackstagePasses()
+        {
+            var item = new Item { Name = "Backstage passes" };
+
+            var alter = ItemAlter.GetInstanceFor(item);
+            alter.Should().NotBeNull();
+            alter.Should().BeOfType<BackstagePassAlter>();
+        }
+
+        [Fact]
+        public void ConjuredItemAlterForConjuredItems()
+        {
+            var item = new Item { Name = "Conjured" };
+            var alter = ItemAlter.GetInstanceFor(item);
+            alter.Should().NotBeNull();
+            alter.Should().BeOfType<ConjuredItemAlter>();
+        }
+
+        [Fact]
+        public void NormalItemAlterForNormalItems()
+        {
+            var item = new Item { Name = "Elixir" };
+            var alter = ItemAlter.GetInstanceFor(item);
+            alter.Should().NotBeNull();
+            alter.Should().BeOfType<NormalItemAlter>();
+        }
+
     }
 }
