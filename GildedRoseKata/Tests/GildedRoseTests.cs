@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GildedRoseKata
 {
-    public class GildedRoseTest
+    public class GildedRoseTests
     {
         [Fact]
         public void foo()
